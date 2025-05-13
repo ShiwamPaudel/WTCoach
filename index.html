@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WTCoach – WTC's AI Assistant</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f9fbff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    #character-container {
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: dropDown 2s ease-out forwards;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    @keyframes dropDown {
+      to { top: 60px; }
+    }
+
+    #character-img {
+      width: 150px;
+      transition: all 0.3s ease;
+    }
+
+    #speech-bubble {
+      background: white;
+      padding: 10px 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 10px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .blinking {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    #chatbase-container {
+      margin: 280px auto 40px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Character Greeting -->
+  <div id="character-container">
+    <img src="wtcoachcharacter.png" id="character-img" alt="WTCoach">
+    <div id="speech-bubble">Hi, Namaste!</div>
+  </div>
+
+  <!-- Chatbase Iframe -->
+  <div id="chatbase-container">
+    <iframe
+      src="https://www.chatbase.co/chatbot-iframe/m7oqdvaihYHu8iKv2Z4Vd"
+      allow="microphone"
+    ></iframe>
+  </div>
+
+  <!-- Script to trigger reaction -->
+  <script>
+    const iframe = document.querySelector("iframe");
+    iframe.addEventListener("load", () => {
+      const charImg = document.getElementById("character-img");
+      const speech = document.getElementById("speech-bubble");
+
+      // Wait for a small delay, then react
+      setTimeout(() => {
+        speech.style.display = 'none';
+        charImg.classList.add("blinking");
+      }, 3000); // Or you could wait until user interacts
+    });
+  </script>
+
+</body>
+</html>
